@@ -13,20 +13,21 @@ def arithmetic_arranger(problems, show_answers=False):
             return 'Error: Numbers cannot be more than four digits.'
         if (not operand_1.isdigit()) or (not operand_2.isdigit()):
             return 'Error: Numbers must only contain digits.' 
-
+        # bottom row
         if len(operand_2)>len(operand_1):
             space = len(operand_2)+1
         else:
             space = len(operand_1)+1
         bottom_row = operator+operand_2.rjust(space)
-        
+        # dashes
         underline = '-'*len(bottom_row)
+        # top row
         top_indent = ' '*abs(len(operand_1)-len(bottom_row))
         top_row = top_indent+operand_1
-        solution = eval(problem)
-        answer = str(solution)
+        answer = str(eval(problem))
         ans_indent = ' '*abs(len(answer)-len(bottom_row))
-        ans_row = ans_indent+str(solution)
+        ans_row = ans_indent+answer
+        # layout
         if show_answers:
             arranged_problem = [top_row,bottom_row,underline,ans_row]
             result.append(arranged_problem)
@@ -40,6 +41,7 @@ def arithmetic_arranger(problems, show_answers=False):
 
     return '\n'.join(horizontal_layout)
 
+#%%
 # print(f'\n{arithmetic_arranger(["3801 - 2", "123 + 49"])}')
 # print(f'\n{arithmetic_arranger(["32 - 698", "1 - 3801", "45 + 43", "123 + 49", "988 + 40"], True)}')
 # print(f'\n{arithmetic_arranger(["44 + 815", "909 - 2", "45 + 43", "123 + 49", "888 + 40", "653 + 87"], True)}')
